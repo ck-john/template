@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+    </style>
+</head>
+<body>
+<!--<div id="app">-->
+    <!--<p>{{totalCount}}</p>-->
+    <!--<btn-counter v-on:add="calculateCount"></btn-counter>-->
+    <!--<btn-counter v-on:add="calculateCount"></btn-counter>-->
+    <!--<btn-counter v-on:add="calculateCount"></btn-counter>-->
+
+<!--</div>-->
+<!--<template id="T1">-->
+<!--<button @click="add">-->
+<!--{{counter}}-->
+<!--</button>-->
+<!--</template>-->
+
+<!--<script>-->
+    <!--Vue.component("btn-counter",{-->
+        <!--template:"#T1",-->
+        <!--data(){-->
+            <!--return {counter:0}-->
+        <!--},-->
+        <!--methods:{-->
+            <!--add(){-->
+                <!--this.counter+=1;-->
+                <!--this.$emit("add")-->
+            <!--}-->
+        <!--}-->
+    <!--})-->
+   <!--new Vue({-->
+       <!--el:"#app",-->
+       <!--data:{-->
+           <!--totalCount:0-->
+       <!--},-->
+       <!--methods:{-->
+           <!--calculateCount(){-->
+               <!--this.totalCount+=1;-->
+           <!--}-->
+       <!--}-->
+   <!--})-->
+
+<!--</script>-->
+
+
+<div id="app">
+    <p>{{totalCount}}</p>
+    <btn-count v-on:add="totalCounter"></btn-count>
+    <btn-count v-on:add="totalCounter"></btn-count>
+    <btn-count v-on:add="totalCounter"></btn-count>
+
+</div>
+<template id="T1">
+    <button @click="add">
+        {{counter}}
+    </button>
+</template>
+<script>
+    Vue.component("btn-count",{
+        template:"#T1",
+        data(){
+            return {
+                counter:0
+            }
+        },
+        methods:{
+            add(){
+                this.counter+=1;
+                this.$emit("add")
+            }
+        }
+    })
+   new Vue({
+       el:"#app",
+       data:{
+           totalCount:0
+       },
+       methods:{
+           totalCounter(){
+               this.totalCount+=1
+           }
+       }
+   })
+</script>
+</body>
+
+</html>

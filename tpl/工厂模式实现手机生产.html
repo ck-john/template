@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+    </style>
+</head>
+<body>
+
+
+
+<script>
+
+    function PhoneMake(){
+
+    };
+    PhoneMake.prototype.logDes=function(){
+        console.log('我们的口号是' + this.des);
+    };
+    PhoneMake.vivo=function(){
+            this.des='照亮你的美';
+        };
+      PhoneMake.oppo=function(){
+          this.des='充电五分钟，通话两小时';
+      };
+      PhoneMake.iphone=function(){
+          this.des='change world';
+      };
+    PhoneMake.factory=function(str){
+        var ShopStr=str;
+        if(typeof ShopStr!='function'){
+            throw '不支持生产';
+        }
+        PhoneMake[ShopStr].prototype=new PhoneMake()
+        var newShop=new PhoneMake[ShopStr]();
+        return newShop;
+    };
+    var vivo=PhoneMake.factory('vivo');
+    var oppo=PhoneMake.factory('oppo');
+    var iphone=PhoneMake.factory('iphone');
+
+
+
+
+
+
+
+
+//  function PhoneMake(){
+//
+//  };
+//    PhoneMake.prototype.logDes=function(){
+//        console.log('我们的口号是' + this.des);
+//    };
+//    PhoneMake.vivo=function(){
+//        this.des='照亮你的美';
+//    };
+//  PhoneMake.oppo=function(){
+//      this.des='充电五分钟，通话两小时';
+//  };
+//  PhoneMake.iphone=function(){
+//      this.des='change world';
+//  };
+//  PhoneMake.factory=function(str){
+//      var shopStr= str
+//      if(typeof PhoneMake[shopStr]!='function'){
+//          throw '不支持生产';
+//      }
+//      var newShop=new PhoneMake[shopStr]();
+//      return newShop;
+//  };
+//    var vivo=PhoneMake.factory('vivo');
+//
+
+</script>
+</body>
+
+</html>

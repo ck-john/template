@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+        body
+        {
+            background: grey;
+        }
+        p{
+            text-align: center;
+            line-height: 40px;
+        }
+        #spanTop {
+            width: 40px;
+            height: 40px;
+            background: red ;
+            -webkit-background-size:100% 100%;
+            background-size:100% 100%;
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+        }
+       /* #spanTop{
+            display: none;
+        }*/
+
+    </style>
+</head>
+<body>
+<span id="spanTop"></span>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+<p>666</p>
+
+<script src="MyFunc.js"></script>
+<script>
+ var spanTop = document.getElementById('spanTop');
+    window.onscroll=function(){
+        var myScroll=scroll().top;
+        if(myScroll>0){
+            spanTop.style.display='block'
+        }else {
+            spanTop.style.display='none'
+        }
+        begin=myScroll;
+            }
+    var begin=0;
+    var end=0;
+    var timer=null;
+    spanTop.onclick=function(){
+        clearInterval(timer);
+        timer=setInterval(function(){
+            begin=begin+(end-begin)/20;
+            window.scrollTo(0,begin);
+            if(begin==end){
+                clearInterval(timer);
+            }
+        },10)
+    }
+</script>
+</body>
+
+</html>

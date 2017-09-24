@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+        textarea{
+            width: 300px;
+            height: 100px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">发布微博
+<textarea id="text1"></textarea>
+<button id="btn">发布</button>
+</div>
+
+
+<script>
+var btn = document.getElementById('btn');
+var text1 = document.getElementById('text1');
+var newUl =document.createElement('ul');
+var box = document.getElementById('box');
+
+btn.onclick=function(){
+    var new_li=document.createElement('li');
+    var textInput=text1.value;
+    box.appendChild(newUl);
+//    new_ul.appendChild(new_li);
+    newUl.insertBefore(new_li,newUl.firstElementChild);
+    new_li.innerHTML=textInput+'<a>删除</a>';
+
+    var del=new_li.lastElementChild;
+    del.onclick=function(){
+        newUl.removeChild(del.parentNode);
+    }
+    text1.value=null;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+    /*btn.onclick=function(){
+        var text_imput=text1.value;
+       var newLi=document.createElement('li');
+        box.appendChild(newUl);
+//        newUl.appendChild(newLi);
+        newUl.insertBefore(newLi,newUl.firstElementChild)
+        newLi.innerHTML=text_imput+'<a>删除</a>';
+        var del=newLi.lastElementChild;
+        del.onclick=function(){
+            newUl.removeChild(del.parentNode);
+        }
+        text1.value='';
+       if(text1.value=''){
+           bbtn.onclick.function=false;
+           return;
+       }
+    }*/
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+    </style>
+</head>
+<body>
+<ul>
+    <li>你好,很高兴见到你</li>
+    <li>你好,很高兴见到你</li>
+    <li>你好,很高兴见到你</li>
+    <li>你好,很高兴见到你</li>
+    <li>你好,很高兴见到你</li>
+    <li>你好,很高兴见到你</li>
+    <li>你好,很高兴见到你</li>
+    <li>你好,很高兴见到你</li>
+    <li>你好,很高兴见到你</li>
+    <li>你好,很高兴见到你</li>
+    <li>你好,很高兴见到你</li>
+    <li>你好,很高兴见到你</li>
+    <li>你好,很高兴见到你</li>
+    <li>你好,很高兴见到你</li>
+    <li>你好,很高兴见到你</li>
+    <li>你好,很高兴见到你</li>
+    <li>你好,很高兴见到你</li>
+    <li>你好,很高兴见到你</li>
+    <li>你好,很高兴见到你</li>
+    <li>你好,很高兴见到你</li>
+</ul>
+
+
+<script>
+var lis = document.getElementsByTagName('li');
+    for(i=0;i<lis.length;i++){
+        if(i%2==0){
+            lis[i].style.background='red'
+        }
+        else{
+            lis[i].style.background='blue'
+        }
+        lis[i].onmouseover=function(){
+            for(var j=0;j<lis.length;j++){
+                if(j%2==0){
+                    lis[j].style.background='red'
+                }
+                else{
+                    lis[j].style.background='blue'
+                }
+            }
+            this.style.background='yellow';
+        }
+    }
+
+</script>
+</body>
+
+</html>

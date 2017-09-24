@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        img
+        {
+            vertical-align: top;
+        }
+        #box
+        {
+            width: 640px;
+            height: 270px;
+            border: 1px solid #dddddd;
+            padding: 10px;
+            margin: 100px auto;
+            position: relative;
+
+        }
+        #box_top
+        {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        #box_top ul
+        {
+            position: absolute;
+            width: 4500px;
+            left: 0;
+            top: 0;
+        }
+        #box_top ul li
+        {
+            float: left;
+        }
+        #olTag
+        {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            /*background: purple;*/
+            width: 150px;
+            height: 30px;
+        }
+        #olTag li
+        {
+            float: left;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            background: deepskyblue;
+            border-radius: 50%;
+            line-height: 20px;
+            text-align: center;
+        }
+        #olTag .cur
+        {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="box_top">
+        <ul id="ulTag">
+            <li><img src="scanImg/01.jpg" alt=""></li>
+            <li><img src="scanImg/02.jpg" alt=""></li>
+            <li><img src="scanImg/03.jpg" alt=""></li>
+            <li><img src="scanImg/04.jpg" alt=""></li>
+            <li><img src="scanImg/05.jpg" alt=""></li>
+        </ul>
+    </div>
+    <ol id="olTag">
+    </ol>
+</div>
+
+<script src="MyFunc1.js"></script>;
+<script>
+//    var ulTag = document.getElementById('ulTag');
+//    var olTag = document.getElementById('olTag');
+//    var ulLis=ulTag.children;
+//    ulTag.appendChild(ulLis[0].cloneNode(true));
+//    for(var i=0;i<ulLis.length-1;i++){
+//        var li=document.createElement('li');
+//        li.index=i;
+//        li.innerHTML=i+1;
+//        olTag.appendChild(li);
+//    }
+//    olTag.children[0].className='cur';
+//    for(var i=0;i<olTag.children.length;i++){
+//        var li=olTag.children[i];
+//        li.onmouseover=function(){
+//            for(var j=0;j<olTag.children.length;j++){
+//                olTag.children[j].className='';
+//            }
+//            this.className='cur';
+//            constant(ulTag,20,-this.index*640);
+//        }
+//    }
+//    var count=0;
+//    var autoPlayIndex=0;
+//    var timer=0;
+//    timer=setInterval(function(){
+//        autoPlayIndex++;
+//        if(autoPlayIndex>5){
+//            autoPlayIndex=1;
+//            ulTag.style.left=0;
+//        }
+//        constant(ulTag,20,-this.index*640);
+//        count++;
+//        if(count>4){
+//            count=0;
+//        }
+//        for(var i=0;i<olTag.children.length;i++)
+//        {
+//            for(var j=0;j<olTag.children.length;j++)
+//            {
+//                olTag.children[j].className ='';
+//            }
+//            olTag.children[count].className ='cur';
+//        }
+//    },1000);
+
+
+
+
+
+
+
+
+
+
+
+
+var ulTag = document.getElementById('ulTag');
+var olTag = document.getElementById('olTag');
+    var alllis=ulTag.children;
+    ulTag.appendChild(alllis[0].cloneNode(true));
+    for(var i=0;i<alllis.length-1;i++){
+       var li = document.createElement('li');
+        li.index=i;
+        li.innerHTML=(i+1);
+        olTag.appendChild(li);
+    }
+    olTag.children[0].className='cur';
+    for(var i=0;i<olTag.children.length;i++){
+        var li=olTag.children[i];
+        li.onmouseover=function(){
+            for(var j=0;j<olTag.children.length;j++){
+                olTag.children[j].className='';
+            }
+            this.className='cur';
+            constant(ulTag,20,-this.index*640);
+        }
+    }
+    var timer=0;
+    var count=0;
+var autoPlayIndex=0;
+timer = setInterval(autoPlay,1000);
+//    clearInterval(timer);
+    function autoPlay(){
+        count++;
+        if(count>5){
+            count=1;
+            ulTag.style.left=0;
+        }
+//        contsant(ulTag,20,-count*640+'px');
+//        ulTag.style.left=-count*640+'px';
+        constant(ulTag,20,-count*640);
+        autoPlayIndex++;
+        if(autoPlayIndex>4){
+            autoPlayIndex=0;
+        }
+        for(var i=0;i<olTag.children.length;i++){
+            for(var j=0;j<olTag.children.length;j++){
+                olTag.children[j].className='';
+            }
+            olTag.children[autoPlayIndex].className='cur'
+        }
+
+    }
+box.onmouseover = function () {
+    clearInterval(timer);
+};
+box.onmouseout = function () {
+    timer = setInterval(autoPlay,1000);
+}
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+        #box{
+            width: 150px;
+            height: 250px;
+            border: 1px solid #000;
+            display: none;
+            position: absolute;
+        }
+        #box2{
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            position: absolute;
+            z-index: 2;
+        }
+        #box3{
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <ul>
+        <li>选项1</li>
+        <li>选项1</li>
+        <li>选项1</li>
+        <li>选项1</li>
+        <li>选项1</li>
+    </ul>
+</div>
+<div id="box2"></div>
+<div id="box3"></div>
+<script>
+    var box = document.getElementById('box');
+    document.oncontextmenu=function(bb){
+        bb = bb||window.bb;
+        var leftV= bb.clientX;
+        var topV= bb.clientY;
+        box.style.left=leftV+'px';
+        box.style.top=topV+'px';
+        box.style.display='block';
+        return false
+    }
+
+    var box2 = document.getElementById('box2');
+    document.onmousemove=function(aa){
+        aa = aa || window.aa;
+        var leftValue=aa.clientX+20;
+        var topValue=aa.clientY+20;
+        box2.style.left=leftValue+'px';
+        box2.style.top=topValue+'px';
+    }
+    var box3 = document.getElementById('box3');
+    box3.onmousedown=function(event){
+            event=event||window.event;
+            var distanceX=event.clientX-box3.style.left;
+            var distanceY=event.clientY-box3.style.top;
+            box3.onmousemove=function(event){
+                event=event||window.event;
+                var left_V=event.clientX-distanceX;
+                var top_V=event.clientY-distanceY;
+                box3.style.left=left_V+'px';
+                box3.style.top=top_V+'px';
+            }
+            box3.onmouseup=function(){
+                box3.onmousemove=false;
+                document.onmouseup = null;
+            }
+
+
+    }
+
+
+</script>
+</body>
+
+</html>

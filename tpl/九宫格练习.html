@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+        div {
+            position: relative;
+
+        }
+
+        div button {
+            width: 50px;
+            height: 50px;
+            background: red;
+            /*position: absolute;*/
+        }
+
+    </style>
+</head>
+<body>
+<button id="btn1">每行3列</button>
+<button id="btn2">每行4列</button>
+<div id="box">
+
+    <button></button><button></button>
+    <button></button>
+    <button></button>
+    <button></button>
+    <button></button>
+    <button></button>
+    <button></button>
+    <button></button>
+    <button></button>
+    <button></button>
+    <button></button>
+    <button></button>
+    <button></button>
+    <button></button>
+    <button></button>
+    <button></button>
+    <button></button>
+    <button></button>
+    <button></button>
+</div>
+
+
+<script>
+    var btn1 = document.getElementById('btn1');
+    var btn2 = document.getElementById('btn2');
+    var box = document.getElementById('box');
+    var btns = box.getElementsByTagName('button');
+   /* btn1.onclick=function(){
+        for(var i= 0;i<btns.length;i++){
+            btns[i].style.position = 'absolute';
+            var cosl =i%3;
+            var rows = parseInt(i/3);
+            var leftvalue = 10 + cosl * (50+10);
+            var topvalue = 10+rows*(50+10);
+            btns[i].style.left= leftvalue+'px';
+            btns[i].style.top= topvalue+'px';
+        }
+
+    }
+    btn2.onclick=function(){
+        for(var i= 0;i<btns.length;i++){
+            btns[i].style.position = 'absolute';
+            var cosl =i%4;
+            var rows = parseInt(i/4);
+            var leftvalue = 10 + cosl * (50+10);
+            var topvalue = 10+rows*(50+10);
+            btns[i].style.left= leftvalue+'px';
+            btns[i].style.top= topvalue+'px';
+        }
+
+    }*/
+    //函数抽取
+    function change(lines){
+        for(var i= 0;i<btns.length;i++){
+            btns[i].style.position = 'absolute';
+            var cosl =i%lines;
+            var rows = parseInt(i/lines);
+            var leftvalue = 10 + cosl * (50+10);
+            var topvalue = 10+rows*(50+10);
+            btns[i].style.left= leftvalue+'px';
+            btns[i].style.top= topvalue+'px';
+        }
+    }
+    btn1.onclick=function(){
+       change(3);
+    }
+    btn2.onclick=function(){
+        change(4);
+    }
+
+</script>
+</body>
+
+</html>

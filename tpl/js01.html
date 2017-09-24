@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div .aa,.bb{
+            width: 100px;
+            height: 20px;
+        }
+        .btn{
+            width: 50px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+<p id="demo">backham</p>
+<button onclick="myfunction()">点击这里</button>
+<div>
+    <input type="text" class="aa">
+    <input type="password" class="bb">
+    <button class="btn"></button>
+</div>
+<script>
+    document.write("<p>我是段落</p>");
+//    document.getElementById("demo").innerHTML="c.ronaldo"
+//    function myfunction(){
+//        var a =5;
+//        var b =6;
+//        var sum = a + b;
+//        document.write("<p>sum</p>");
+//        console.log(sum);
+//    }
+    var name=document.getElementsByClassName("aa");
+    var bb=document.getElementsByClassName("bb");
+    var btn=document.getElementsByClassName("btn");
+    btn.onclick=function(){
+        if(name.value==""){
+            window.location.href='https://www.baidu.com/'
+        }else{
+            alert('1111')
+        }
+    }
+
+
+</script>
+</body>
+</html>

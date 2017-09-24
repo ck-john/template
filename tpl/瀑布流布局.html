@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+        img
+        {
+            vertical-align: top;
+        }
+        #main
+        {
+            position: relative;
+        }
+        .box
+        {
+            float: left;
+            /*background: red;*/
+            /*padding: 10px;*/
+            padding: 10px 0 0 10px;
+        }
+        .pic
+        {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #ddd;
+            background: #fff;
+        }
+        .pic img
+        {
+            width: 150px;
+
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <div class="box">
+        <div class="pic">
+            <img src="images/0.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/1.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/2.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/3.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/4.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/5.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/6.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/7.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/8.jpg" alt="">
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="pic">
+            <img src="images/9.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/10.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/11.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/12.jpg" alt="">
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="pic">
+            <img src="images/13.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/14.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/15.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/0.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/1.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/2.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/0.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/1.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/2.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/0.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/1.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/2.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/0.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/1.jpg" alt="">
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/2.jpg" alt="">
+        </div>
+    </div>
+    <script src="MyFunc.js"></script>
+    <script src="Underscore-min.js"></script>
+<script>
+window.onload=function(){
+    waterFloat('main','box');
+    window.onscroll=function(){
+        if(isWillLoadBox()){
+            var imgArr=[{src:'1.jpg'},{src:'2.jpg'},{src:'3.jpg'},{src:'4.jpg'},{src:'5.jpg'},{src:'6.jpg'},{src:'7.jpg'},{src:'8.jpg'}];
+            for(var i=0;i<imgArr.length;i++){
+                var newBox=document.createElement('div');
+                newBox.className='box';
+                $('main').appendChild(newBox);
+                var newPic=document.createElement('div');
+                newPic.className='pic';
+                newBox.appendChild(newPic);
+                var newImg=document.createElement('img');
+                newImg.src='images/'+imgArr[i].src;
+                newPic.appendChild(newImg);
+            }
+            waterFloat('main','box');
+        }
+    }
+};
+function waterFloat(parent,box){
+    var allBox=$(parent).getElementsByClassName(box);
+        var boxWidth=allBox[0].offsetWidth;
+        var screenWidth=document.documentElement.clientWidth||document.body.clientWidth;
+        var clos=Math.floor(screenWidth/boxWidth);
+        $(parent).style.width=clos*boxWidth+'px';
+        $(parent).style.margin='0 auto';
+        var boxHeightArr=[];
+
+        for (var j=0;j<allBox.length;j++){
+            var boxHeight=allBox[j].offsetHeight;
+            if(j<clos){
+                boxHeightArr.push(boxHeight);
+            }
+            else{
+                var minBoxHeight= _.min(boxHeightArr);
+                var minBoxHeightIndex=getMinBoxHeight(boxHeightArr,minBoxHeight);
+
+                allBox[j].style.position='absolute';
+                allBox[j].style.left=minBoxHeightIndex*boxWidth+'px';
+                allBox[j].style.top=minBoxHeight+'px';
+            }
+            boxHeightArr[minBoxHeightIndex]+=boxHeight;
+        }
+
+}
+function getMinBoxHeight(arr,value){
+    for(var i=0;i<arr.length;i++){
+        if(arr[i]==value)return i;
+    }
+}
+function isWillLoadBox(){
+    var allBox=$('main').getElementsByClassName('box');
+    var lastBox=allBox[allBox.length-1];
+    var lastBoxHeight=lastBox.offsetHeight*0.5+lastBox.offsetTop;
+    var clientH=document.documentElement.clientWidth||document.body.clientWidth;
+    var scrollTop=scroll().top;
+    return lastBoxHeight<=clientH+scrollTop;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*window.onload=function(){
+    water('main','box');
+}
+
+function  waterFlow(parent,box){
+    var allBox=document.getElementsByClassName(box);
+    var boxWidth= allBox[0].offsetwidth;
+    var screenW=document.documentElement.clientWidth||document.body.clientWidth;
+    var clos=parseInt(screenW/boxWidth);
+    $(parent).style.width=clos*boxWidth+'px';
+    $(parent).style.margin='0 auto';
+    var heightArr=[];
+    for(var i=0;i<allBox.length;i++){
+        var boxHegiht=allBox[i].offsetHeight;
+        if(i<clos){
+            heightArr.push(boxHegiht);
+        }else {
+            var minBoxHeight= _.min(heightArr);
+        }
+        var minBoxHeightIndex=getminBoxHeightIndex(heightArr,minBoxHeight);
+        allBox[i].style.position='absolute';
+        allBox[i].style.left=minBoxHeightIndex*boxWidth+'px';
+
+    }
+}*/
+</script>
+
+</body>
+
+</html>

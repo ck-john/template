@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 100px;
+            padding: 0
+        }
+
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="900" height="600" style="border: 1px solid #000;"></canvas>
+
+
+<script>
+var canvas=document.getElementById("canvas");
+var ctx=canvas.getContext("2d");
+var ox=100;
+var oy=100;
+var r=80
+ctx.strokeStyle="blue";
+ctx.lineWidth=5;
+ctx.strokeRect(0,0,200,200);
+ctx.beginPath();
+ctx.strokeStyle="red";
+ctx.arc(ox,oy,r,0,360*Math.PI/180);
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(70,70,10,0,360*Math.PI/180);
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(130,70,10,0,360*Math.PI/180);
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(ox,oy,r*0.5,0,180*Math.PI/180);
+ctx.stroke();
+ctx.font="80px'微软雅黑'";
+ctx.strokeStyle="purple";
+ctx.shadowColor = 'pink';
+ctx.shadowOffsetX = 10;
+ctx.shadowOffsetY = 10;
+ctx.shadowBlur = 5;
+ctx.lineWidth=3
+ctx.strokeText("微微一笑很倾城",0,300);
+
+
+
+
+
+</script>
+</body>
+
+</html>

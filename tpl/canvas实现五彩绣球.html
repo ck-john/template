@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+    </style>
+</head>
+<body>
+<script src="Underscore-min.js"></script>
+<canvas id="canvas" width="900" height="600" style="border: 1px solid #000;"></canvas>
+
+
+<script>
+var canvas=document.getElementById("canvas");
+var ctx=canvas.getContext("2d");
+function ColorBall(option) {
+    this._init(option)
+};
+ColorBall.prototype={
+    constructor:ColorBall,
+    _init:function (option) {
+        option=option||{};
+        this.x=option.x||0;
+        this.y=option.y||0;
+        this.r=option.r||0;
+        this.color=option.color;
+        this.dX=Math.random()*20-10;
+        this.dY=Math.random()*20-10;
+        this.dR=Math.random()*2+1;
+    },
+    render:function () {
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(this.x,this.y,this.r,0,360*Math.PI/180);
+        ctx.fillStyle=this.color;
+        ctx.fill();
+        ctx.restore();
+    },
+    update:function () {
+        this.x+=this.dX;
+        this.y+=this.dY;
+        this.r-=this.dR;
+        if(this.r<=0){
+            this.r=0;
+            ballArray=_.without(ballArray,this)
+        }
+    }
+};
+var ballArray=[];
+var colors=["red","blue","green","purple","yellow","pink"];
+setInterval(function () {
+    ctx.clearRect(0,0,canvas.width,canvas.height)
+    for (var i = 0; i < ballArray.length; i++) {
+        ballArray[i].update();
+        ballArray[i].render()
+    }
+
+},80);
+canvas.onmousemove=function (e) {
+    var color=colors[_.random(0,colors.length-1)]
+    ballArray.push(new ColorBall({
+        x:e.offsetX,
+        y:e.offsetY,
+        r:30,
+        color:color
+    }))
+}
+//function ColorBall(option) {
+//    this._init(option);
+//}
+//ColorBall.prototype={
+//    constructor:ColorBall,
+//    _init:function (option) {
+//        option=option||{};
+//        this.x=option.x||0;
+//        this.y=option.y||0;
+//        this.r=option.r||0;
+//        this.color=option.color;
+//        this.changeX=Math.random()*20-10;
+//        this.changeY=Math.random()*20-10;
+//        this.changeR=Math.random()*2+1;
+//    },
+//    render:function () {
+//        ctx.save();
+//        ctx.beginPath();
+//        ctx.fillStyle=this.color;
+//        ctx.arc(this.x,this.y,this.r,0,2*Math.PI);
+//
+//        ctx.fill();
+//        ctx.restore();
+//    },
+//    update:function () {
+//        this.x+=this.changeX;
+//        this.y+=this.changeY;
+//        this.r-=this.changeR;
+//        if(this.r<=0){
+//            this.r=0;
+//            ballArray=_.without(ballArray,this)
+//        }
+//    }
+//
+//}
+//var ballArray=[];
+//var colors=["red","blue","green","purple","yellow","pink"]
+//setInterval(function () {
+//    ctx.clearRect(0,0,canvas.width,canvas.height)
+//    for (var i = 0; i < ballArray.length; i++) {
+//        ballArray[i].update()
+//    };
+//    for (var i = 0; i < ballArray.length; i++) {
+//        ballArray[i].render()
+//
+//    }
+//},80)
+//    canvas.onmousemove=function (e) {
+//    var color=colors[_.random(0,colors.length-1)]
+//        ballArray.push(new ColorBall({
+//            x:e.offsetX,
+//            y:e.offsetY,
+//            r:30,
+//            color:color
+//
+//        }))
+//    }
+
+</script>
+</body>
+
+</html>

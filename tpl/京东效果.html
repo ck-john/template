@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+        #box{
+            width: 600px;
+            height: 600px;
+            border: 1px solid #000;
+
+        }
+        #box ul{
+            width: 100px;
+            height: 100%;
+            display: inline-block;
+
+
+        }
+        #box ul li{
+            width: 100px;
+            height: 120px;
+            border: 1px solid #000;
+            box-sizing: border-box;
+
+        }
+        #box>div{
+            width: 500px;
+            height: 600px;
+            float: right;
+            box-sizing: border-box;
+            display: none;
+
+        }
+        .current{
+            background-color: red;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <div style="background-color: aqua"></div>
+    <div style="background-color: green"></div>
+    <div style="background-color: purple"></div>
+    <div style="background-color: yellow"></div>
+    <div style="background-color: pink"></div>
+</div>
+
+
+<script>
+var lits = document.getElementsByTagName('li');
+var box = document.getElementById('box').getElementsByTagName('div');
+
+    for(var i=0;i<lits.length;i++){
+         lits[i].num=i;
+        lits[i].onmouseover=function(){
+            for(var j=0;j<lits.length;j++){
+                lits[j].style.background='';
+            }
+        this.style.background='red';
+            for(var k=0;k<box.length;k++){
+                box[k].style.display=''
+            }
+            box[this.num].style.display='block';
+        }
+    }
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        fieldset, img, input, button {
+            border: none;
+            padding: 0;
+            margin: 0;
+            outline-style: none;
+        }
+
+        ul, ol {
+            list-style: none;
+        }
+
+        input {
+            padding-top: 0;
+            padding-bottom: 0;
+            font-family: "SimSun", "宋体";
+        }
+
+        select, input {
+            vertical-align: middle;
+        }
+
+        select, input, textarea {
+            font-size: 12px;
+            margin: 0;
+        }
+        textarea {
+            resize: none;
+        }
+
+        /*防止拖动*/
+        img {
+            border: 0;
+            vertical-align: middle;
+        }
+
+        /*  去掉图片低测默认的3像素空白缝隙*/
+        table {
+            border-collapse: collapse;
+        }
+
+        body {
+            font: 12px/1.5 tahoma,arial,'Hiragino Sans GB','\5b8b\4f53',sans-serif;
+            color: #666;
+
+        }
+
+        .clearfix:before, .clearfix:after {
+            content: "";
+            display: table;
+        }
+
+        .clearfix:after {
+            clear: both;
+        }
+
+        .clearfix {
+            *zoom: 1; /*IE/7/6*/
+        }
+
+        a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #f40;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            text-decoration: none;
+            font-weight: normal;
+            font-size: 100%;
+        }
+
+        s, i, em {
+            font-style: normal;
+            text-decoration: none;
+        }
+
+        .col-red {
+            color: #C81623 !important;
+        }
+        body {
+            color: #3C3C3C;
+            background-color: #F1F1F4;
+        }
+
+        /*公共类*/
+        .w {
+            /*版心 提取 */
+            width: 1190px;
+            margin: 0 auto;
+        }
+
+        .fl {
+            float: left
+        }
+
+        .fr {
+            float: right
+        }
+
+        .al {
+            text-align: left
+        }
+
+        .ac {
+            text-align: center
+        }
+
+        .ar {
+            text-align: right
+        }
+
+        .hide {
+            display: none
+        }
+
+        body{
+            background: #ffffff;
+        }
+
+        .banner{
+            width: 900px;
+            height: 100px;
+            margin: 0 auto;
+            text-align:center;
+            /*background: red;*/
+            line-height: 100px;
+        }
+
+        .nav{
+            width: 100%;
+            height: 100px;
+            position: absolute;
+            background: #ffffff;
+        }
+
+        .nav .nav_content
+        {
+            width: 900px;
+            height: 100px;
+            /*background: #0099FF;*/
+            margin: 20px auto;
+            line-height: 100px;
+        }
+
+        .nav .nav_content img{
+            width: 130px;
+            height: 44px;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .nav .nav_content .nav_left
+        {
+            float: left;
+        }
+
+        .content
+        {
+
+            width: 900px;
+            height: 1000px;
+            margin: 0 auto;
+            border: 1px solid #CCCCCC;
+            margin-bottom: 50px;
+            margin-top:100px ;
+
+        }
+
+
+        /*.nav .nav_content .nav_right*/
+        /*{*/
+        /*margin-left: 30px;*/
+        /*}*/
+
+        .nav .nav_content .nav_right input[type=text]
+        {
+            margin-left: 30px;
+            width: 530px;
+            height: 23px;
+            border: 1px solid red;
+            font-size: 16px;
+            padding: 10px;
+        }
+
+        .nav .nav_content .nav_right input[type=submit]
+        {
+            width: 100px;
+            height: 44px;
+            background: red;
+            color: #ffffff;
+            margin-left: -5px;
+            font-size: 18px;
+        }
+        .content .header
+        {
+            height: 44px;
+            border-bottom: 1px solid #CCCCCC;
+            line-height: 44px;
+            font-size: 14px;
+
+        }
+        .content .header li{
+            float: left;
+            padding: 0 10px;
+        }
+        .content .header .cur
+        {
+            background: #666666;
+            color: #ffffff;
+        }
+        .content .body li{
+            height: 44px;
+            line-height: 44px;
+            border-bottom: 1px solid #CCCCCC;
+        }
+        .content .body input[type=checkbox]
+        {
+            margin-left: 20px;
+        }
+        .content .body .del,.detail
+        {
+            float: right;
+            margin-right: 20px;
+            color: #C81623;
+            cursor: pointer;
+        }
+
+        .back_top
+        {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: none;
+        }
+
+        .content .body
+        {
+            display: none;
+        }
+        .content .active
+        {
+            display: block;
+        }
+
+        .mask{
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            position: fixed;
+            left: 0;
+            top:0;
+            display: none;
+        }
+        .mask .detail_content
+        {
+            width: 280px;
+            height: 250px;
+            margin: 200px auto;
+            background: #fff;
+        }
+
+        .mask .detail_header
+        {
+            height: 44px;
+            line-height: 44px;
+            font-size: 14px;
+            padding: 5px;
+        }
+
+        .mask .detail_header .close{
+            float: right;
+        }
+        .mask .detail_body
+        {
+            width: 260px;
+            height: 150px;
+            /*background: red;*/
+            margin: 2px auto;
+            /*border:1px solid red;*/
+        }
+        .mask .detail_body textarea{
+            width: 260px;
+            height: 100px;
+            background: #CCCCCC;
+        }
+
+        .mask .detail_body input[type = text]
+        {
+            width: 260px;
+            height: 30px;
+            background: #CCCCCC;
+        }
+
+        .mask .detail_body button
+        {
+            width: 100px;
+            height: 30px;
+            background: red;
+            color: #FFFFFF;
+            float: right;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="back_top">
+    <img src="scanImg/Top.jpg">
+</div>
+<div class="banner">
+    <img src="scanImg/logo.png">
+</div>
+<div class="nav">
+    <div class="nav_content">
+        <div class="nav_left">
+            <img src="scanImg/logo.png">
+        </div>
+        <div class="nav_right">
+            <input type="text">
+            <input type="submit" value="添加">
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="header">
+        <ul>
+            <li class="cur">待办事项</li>
+            <li>已完成事项</li>
+        </ul>
+    </div>
+    <div class="body active">
+        <ul class="task">
+            <!--<li>-->
+            <!--<input type="checkbox">-->
+            <!--<span class="title">我是标题</span>-->
+            <!--<span class="detail">详情</span>-->
+            <!--<span class="del">删除</span>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<input type="checkbox">-->
+            <!--<span class="title">我是标题</span>-->
+            <!--<span class="detail">详情</span>-->
+            <!--<span class="del">删除</span>-->
+            <!--</li>-->
+        </ul>
+    </div>
+    <div class="body">
+        <ul class="finish_task">
+            <!--<li>-->
+            <!--<input type="checkbox">-->
+            <!--<span class="title">我是标题TTT</span>-->
+            <!--<span class="detail">详情</span>-->
+            <!--<span class="del">删除</span>-->
+            <!--</li>-->
+        </ul>
+    </div>
+</div>
+
+<div class="mask">
+    <div class="detail_content">
+        <div class="detail_header">
+            <span class="title">我是标题</span>
+            <span class="close">关闭</span>
+        </div>
+        <div class="detail_body">
+            <textarea class="oText"></textarea>
+            <input type="text" id="dateTime">
+            <button class="update">更新</button>
+        </div>
+    </div>
+</div>
+
+<script src="jquery-3.1.1.js"></script>
+<script>
+$(function () {
+    var nav_top=$(".nav").offset().top;
+    $(window).on("scroll",function () {
+        var top=$(window).scrollTop();
+        if(top>nav_top){
+            $(".nav").css({
+                "position":"fixed",
+                "box-shadow":"0 1px 3px rgba(0,0,0.3)",
+                "top":0
+            });
+            $(".nav img").css({
+                "opacity":1
+            })
+        }
+        else {
+            $(".nav").css({
+                "position":"absolute",
+                "box-shadow":"none",
+                "top":nav_top
+            })
+            $(".nav img").css({
+                "opacity":0
+            })
+        }
+    });
+    $(window).on("scroll",function () {
+        var top = $(window).scrollTop();
+        if(top>nav_top){
+            $(".back_top").stop().fadeIn();
+        }else{
+            $(".back_top").stop().fadeOut()
+        }
+        })
+    $(".back_top").click(function () {
+        $("html body").animate({
+            "scrollTop":0
+        })
+    });
+    var itemArr=store.get("itemArr")||[];
+    if(itemArr){
+        creatEle()
+    }
+    $("nav_right input[type=submit]").click(function () {
+        var title=$("nav_right input[type=text]").val();
+        var item={
+            title:title,
+            isCheck:false,
+            message:"",
+            time:"",
+            isNotice:""
+        };
+        iteamArr.push(item);
+        creatEle();
+    });
+    function creatEle() {
+        store.set("itemArr",itemArr);
+        $(".task").empty();
+        $("finish_task").empty();
+        for(var i=0;i<itemArr.length;i++){
+            var item=itemArr[i];
+            if(item==undefined) continue;
+            var temp= '<li data-xmg='+i+'>'+
+                '<input type="checkbox" '+(item.isCheck?'checked':'')+'>'+
+                '<span class="title">'+item.title+'</span>'+
+                '<span class="detail">详情</span>'+
+                '<span class="del">删除</span>'+
+                '</li>';
+            if(item.isCheck){
+                $(".finish_task").prepend(temp);
+            }else{
+                $(".task").prepend(temp);
+            }
+        }
+        $(".task li:first").hide().slideDown();
+    }
+})
+
+</script>
+</body>
+
+</html>

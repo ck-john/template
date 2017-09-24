@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        ul
+        {
+            width: 600px;
+            height: 300px;
+            border: 1px solid #000;
+            margin: 100px auto;
+        }
+        ul li
+        {
+            width: 100px;
+            height: 100px;
+            background: url("scanImg/pic.jpg");
+            float: left;
+            position: relative;
+        }
+
+    </style>
+</head>
+<body>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+<script src="MyFunc1.js"></script>
+<script>
+var lis = document.getElementsByTagName('li');
+    for(var i=0;i<lis.length;i++){
+        lis[i].cols=parseInt(i%6);
+        lis[i].rows=parseInt(i/6);
+        lis[i].style.backgroundPosition = lis[i].cols*-100+'px '+lis[i].rows*-100+'px'
+    }
+
+var as={
+    a0:function(){
+        for(var i=0;i<lis.length;i++){
+            lis[i].style.left=-600+'px';
+            lis[i].style.top=-300+'px';
+            lis[i].style.opacity= 0;
+            (function(index){
+                setTimeout(function(){
+                    buffer(lis[index],{'left':0,'top':0,'opacity':1})
+                },index*100)
+            })(i)
+        }
+    }
+}
+    var num=0;
+    setInterval(function(){
+        num++;
+        num%=3;
+        as['a'+num]()
+    },4000)
+
+</script>
+</body>
+<script>
+//    deepCopy(obj,copyObj)
+//    if(typeof obj!=="object"||typeof  copyObj!=="object"){
+//        return false;
+//    }
+//    for(var key in copyObj){
+//        if(copyObj.hasOwnProperty(key)){
+//            if(typeof copyObj[key]=="object"){
+//                obj[key]=Array.isArray()?[]:{};
+//                deepCopy(obj[key],copyObj[key]);
+//            }
+//            else{
+//                obj[key]=copyObj[key];
+//            }
+//        }
+//    }
+
+
+
+//深拷贝
+//    function deepCopy(obj,copyObj){
+//        if(typeof obj!="object"||typeof copyObj!="object"){
+//            return false;
+//        }
+//        for(var k in copyObj){
+//            if(copyObj.hasOwnProperty(k)){
+//                if(typeof copyObj[k]=="object"){
+//                    obj[k]=Array.isArray(copyObj[k])?[]:{};
+//                    deepCopy(obj,copyObj);
+//                }
+//                else{
+//                    obj[k]=copyObj[k];
+//                }
+//            }
+//        }
+//    }
+
+</script>
+</html>

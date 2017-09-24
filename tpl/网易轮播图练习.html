@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+        img{
+            vertical-align: top;
+        }
+        #box{
+            width: 310px;
+            height: 260px;
+            margin:100px auto ;
+            position: relative;
+            overflow: hidden;
+        }
+        #box_top{
+            width: 310px;
+            height: 220px;
+        }
+        #main{
+            width: 620px;
+            height: 220px;
+            /*background-color: red;*/
+        }
+        .main_img{
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #box_bottom{
+            text-align: center;
+            padding: 15px;
+            cursor: pointer;
+        }
+        .control_left,.control_right{
+            width: 20px;
+            height: 34px;
+            position: absolute;
+            margin-top: -35px;
+            top: 50%;
+        }
+        .control_left{
+            left: 5px;
+            background: url('scanImg/icon.png') no-repeat;
+        }
+        .control_right{
+            right: 5px;
+            background: url('scanImg/icon.png') no-repeat -9px -45px;
+        }
+        .control_icon
+        {
+            width: 24px;
+            height: 5px;
+            background: url("scanImg/icon.png") no-repeat -24px -790px;
+            display: inline-block;
+            margin: 3px;
+            text-indent: 25em;
+
+        }
+        .current
+        {
+            background-position: 0 -770px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+
+    <div id="box_top">
+
+        <div id="main">
+
+            <div class="main_img">
+                <a href="#">
+                    <img src="scanImg/1.jpeg" alt="">
+                </a>
+            </div>
+
+            <div class="main_img">
+                <a href="#">
+                    <img src="scanImg/2.jpeg" alt="">
+                </a>
+            </div>
+
+            <div class="main_img">
+                <a href="#">
+                    <img src="scanImg/3.jpeg" alt="">
+                </a>
+            </div>
+
+            <div class="main_img">
+                <a href="#">
+                    <img src="scanImg/4.jpeg" alt="">
+                </a>
+            </div>
+            <
+            <div class="main_img">
+                <a href="#">
+                    <img src="scanImg/5.jpeg" alt="">
+                </a>
+            </div>
+
+            <div class="main_img">
+                <a href="#">
+                    <img src="scanImg/6.jpeg" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+<div id="box_bottom">
+    <span class="control_left"></span>
+    <span class="control_right"></span>
+</div>
+</div>
+
+<script src="MyFunc1.js"></script>
+<script>
+var box_bottom = document.getElementById('box_bottom');
+//var btn=box_bottom.children;
+var main = document.getElementById('main');
+var main_imgs=main.children;
+var box = document.getElementById('box');
+var imgWidth=box.offsetWidth;
+var iNow=0;
+var currentIndex=0;
+for(var i=0;i<main_imgs.length;i++){
+    var span = document.createElement('span');
+    span.innerHTML=main_imgs.length-i;
+    span.className ='control_icon';
+    box_bottom.insertBefore(span,box_bottom.children[1]);
+}
+box_bottom.children[1].className='control_icon current';
+
+    for(var i=1;i<main_imgs.length;i++){
+        main_imgs[i].style.left=imgWidth+'px';
+    }
+    for(var i=0;i<box_bottom.children.length;i++){
+        var mySpan=box_bottom.children[i];
+        mySpan.onclick=function(){
+            if(this.className=='control_left'){
+                buffer(main_imgs[iNow],{'left':imgWidth});
+                iNow--;
+                if(iNow<0){
+                    iNow=main_imgs.length-1;
+                }
+                main_imgs[iNow].style.left=-imgWidth+'px';
+                buffer(main_imgs[iNow],{'left':0});
+//                iNow=currentIndex;
+            }
+            else if(this.className=='control_right'){
+                buffer(main_imgs[iNow],{'left':-imgWidth})
+                iNow++;
+                if(iNow>main_imgs.length-1){
+                    iNow=0;
+                }
+                main_imgs[iNow].style.left=imgWidth+'px';
+                buffer(main_imgs[iNow],{'left':0});
+//                iNow=currentIndex;
+            }
+            else{
+                currentIndex = this.innerHTML-1;
+                if(currentIndex>iNow){
+                    buffer(main_imgs[iNow],{'left':-imgWidth})
+//                    iNow++;
+                    main_imgs[currentIndex].style.left=imgWidth+'px';
+                    buffer(main_imgs[currentIndex],{'left':0});
+                    iNow=currentIndex;
+                }
+                else if(currentIndex<iNow){
+                    buffer(main_imgs[iNow],{'left':imgWidth});
+//                    iNow--;
+                    main_imgs[currentIndex].style.left=-imgWidth+'px';
+                    buffer(main_imgs[currentIndex],{'left':0});
+                    iNow=currentIndex;
+                }
+
+            }
+            changeIndex();
+        }
+    }
+
+
+    function changeIndex(){
+        for(var i= 1;i<box_bottom.children.length-1;i++){
+            box_bottom.children[i].className='control_icon';
+            box_bottom.children[iNow+1].className='control_icon current';
+        }
+    }
+    var timer=null;
+    timer=setInterval(autoPlay,1000);
+    function autoPlay(){
+        buffer(main_imgs[iNow],{'left':-imgWidth})
+        iNow++;
+        if(iNow>main_imgs.length-1){
+            iNow=0;
+        }
+        main_imgs[iNow].style.left=imgWidth+'px';
+        buffer(main_imgs[iNow],{'left':0});
+        changeIndex();
+    }
+    box.onmouseover=function(){
+        clearInterval(timer);
+    }
+    box.onmouseout=function(){
+        timer=setInterval(autoPlay,1000);
+    }
+</script>
+</body>
+
+</html>

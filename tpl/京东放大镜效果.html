@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+        #box{
+            width: 350px;
+            height: 400px;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+        #smallBox{
+            width: 350px;
+            height: 350px;
+
+        }
+        #box ul{
+            width: 350px;
+            height: 100px;
+            position: absolute;
+            top: 350px;
+            left: 0;
+            background-color: red;
+        }
+        #box ul li{
+            list-style: none;
+            float: left;
+        }
+        #bigBox{
+            width: 600px;
+            height: 600px;
+            position: absolute;
+            top: 0;
+            left: 360px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            display: none;
+        }
+        #bigImg{
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #cover{
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255,255,0,0.4);
+            position: absolute;
+            left: 0;
+            top:0;
+            display: none;
+            cursor: move;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="smallBox">
+        <img  src="scanImg/pic003.jpg" alt="">
+        <span id="cover"></span>
+    </div>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <div id="bigBox"><img id="bigImg" src="pic03.jpg" alt=""></div>
+</div>
+
+
+<script>
+    var smallBox = document.getElementById('smallBox');
+    var bigBox = document.getElementById('bigBox');
+    var bigImg = document.getElementById('bigImg');
+    var cover = document.getElementById('cover');
+    smallBox.onmouseover=function(){
+
+        smallBox.onmousemove=function(event){
+            event=event||window.event;
+            var coverX=event.clientX-smallBox.offsetLeft-cover.offsetWidth*0.5;
+            var coverY=event.clientY-smallBox.offsetTop-cover.offsetWidth*0.5;
+            if(coverX<0){
+                coverX=0;
+            }else if(coverX>smallBox.offsetWidth-cover.offsetWidth){
+                coverX=smallBox.offsetWidth-cover.offsetWidth;
+            }
+            if(coverY<0){
+                coverY=0;
+            }else if(coverY>smallBox.offsetHeight-cover.offsetHeight){
+                coverY=smallBox.offsetHeight-cover.offsetHeight;
+            }
+            cover.style.left=coverX+'px';
+            cover.style.top=coverY+'px';
+            bigImg.style.left=-coverX/(smallBox.offsetWidth/bigImg.offsetWidth)+'px';
+            bigImg.style.top=-coverY/(smallBox.offsetHeight/bigImg.offsetHeight)+'px';
+
+        }
+        bigBox.style.display='block';
+        cover.style.display='block';
+    }
+    smallBox.onmouseout=function(){
+        bigBox.style.display='none';
+        cover.style.display='none';
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+var smallBox = document.getElementById('smallBox');
+var bigBox = document.getElementById('bigBox');
+var cover=document.getElementById('cover');
+var bigImg = document.getElementById('bigImg');
+    smallBox.onmouseover=function(){
+        smallBox.onmousemove=function(event){
+            event=event||window.event;
+            var leftX=event.clientX-smallBox.offsetLeft-cover.offsetWidth*0.5;
+            var leftY=event.clientY-smallBox.offsetTop-cover.offsetWidth*0.5;
+            if(leftX<0){
+                leftX=0
+            }else if(leftX>smallBox.offsetWidth-cover.offsetWidth){
+                leftX=smallBox.offsetWidth-cover.offsetWidth
+            }
+            if(leftY<0){
+                leftY=0
+            }else if(leftY>smallBox.offsetHeight-cover.offsetHeight){
+                leftY=smallBox.offsetHeight-cover.offsetHeight
+            }
+
+            cover.style.left=leftX+'px';
+            cover.style.top=leftY+'px';
+
+            bigImg.style.left=-leftX/(smallBox.offsetWidth/bigImg.offsetWidth)+'px';
+            bigImg.style.top=-leftY/(smallBox.offsetHeight/bigImg.offsetHeight)+'px';
+        }
+
+
+        cover.style.display='block';
+        bigBox.style.display='block';
+
+    }
+    smallBox.onmouseout=function(){
+        cover.style.display='none';
+        bigBox.style.display='none';
+    }
+*/
+
+
+</script>
+</body>
+
+</html>

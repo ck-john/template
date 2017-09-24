@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="900" height="600" style="border: 1px solid #000;"></canvas>
+
+
+<script>
+    var canvas=document.getElementById("canvas");
+    var ctx=canvas.getContext("2d");
+    var data=[
+        {name:"北京",colors:"red",value:0.25},
+        {name:"上海",colors:"green",value:0.3},
+        {name:"广州",colors:"blue",value:0.15},
+        {name:"深圳",colors:"pink",value:0.2},
+        {name:"珠海",colors:"purple",value:0.1}
+    ];
+    var ox=canvas.width*0.5;
+    var oy=canvas.height*0.5;
+    var r=100;
+    var beginAngle=-90*Math.PI/180;
+
+    for (var i = 0; i < data.length; i++) {
+        var templeAngle=360*data[i].value*Math.PI/180;
+        var endAngle=beginAngle+templeAngle;
+        ctx.beginPath();
+        ctx.moveTo(ox,oy);
+        ctx.arc(ox,oy,r,beginAngle,endAngle);
+        ctx.fillStyle=data[i].colors;
+        ctx.fill();
+        ctx.beginPath();
+        var text=data[i].name+data[i].value*100+"%";
+        var temAngle=beginAngle+templeAngle*0.5;
+        var textX=ox+(r+20)*Math.cos(temAngle);
+        var textY=oy+(r+20)*Math.sin(temAngle);
+//        ctx.fillStyle=data[i].colors
+        if(temAngle>90*Math.PI/180&&temAngle<270*Math.PI/180){
+            ctx.textAlign="end"
+        }
+        ctx.fillText(text,textX,textY)
+        beginAngle=endAngle;
+    }
+
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+        #box{
+            width: 500px;
+            height: 500px;
+            border: 1px solid #000;
+            margin: 100px auto;
+            position: relative;
+        }
+        #box div{
+            width: 80px;
+            height: 80px;
+            background-color: red;
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            /*overflow: hidden;*/
+        }
+        #box span{
+             width: 80px;
+             height: 80px;
+            background-color: black;
+            opacity: 0;
+            /*position: absolute;
+            left: 0;
+            top: 80px;*/
+         }
+        /*.current{
+            background-color: black;
+            opacity: 0.6;
+        }*/
+    </style>
+</head>
+<body>
+<div id="box">
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+
+
+</div>
+
+
+<script>
+    var pic = document.getElementsByTagName('span');
+  var boxs=document.getElementById('box').getElementsByTagName('div');
+    var topV = 0;
+   var leftV = 0;
+   /* var timer = 0;
+    var boxV = 80;*/
+
+
+    for(var i = 0;i<boxs.length;i++){
+
+        var col = i%4;
+        var row =parseInt(i/4);
+        topV= 20+col*(80+10);
+        leftV=20+row*(80+10);
+        boxs[i].style.top=topV+'px';
+        boxs[i].style.left=leftV+'px';
+        boxs[i].onmouseover=function(){
+            for(var j=0;j<boxs.length;j++){
+                boxs[j].style.background='';
+            }
+            this.style.background="rgba(0,0,0,0.7)";
+        }
+
+        /*boxs.onmouseover=function(){
+            clearInterval(timer);
+            timer = setInterval(function(){
+                boxV-=3;
+                if(boxV<=0){
+                    boxV = 0;
+                    clearInterval(timer);
+                }
+                pic[i].style.top=boxV+'px';
+
+            },30)
+        }
+        boxs.onmouseout=function(){
+
+            clearInterval(timer);
+            timer = setInterval(function(){
+                boxV+=3;
+                if(boxV>=80){
+                    boxV = 80;
+                    clearInterval(timer);
+                }
+                pic[i].style.top=boxV+'px';
+
+            },30)
+        }*/
+
+    }
+
+
+
+
+
+</script>
+</body>
+
+</html>

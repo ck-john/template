@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+        body{
+            background: black;
+        }
+        span{
+            width: 30px;
+            height: 30px;
+            background:  url(scanImg/star.png) 0 0 no-repeat;
+            background-size: 100% 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            animation: move 1s alternate infinite;
+        }
+        span:hover
+        {
+            transform: scale(3,3) rotate(180deg)!important;
+            transition: all 1s;
+        }
+        @keyframes move {
+            from{
+                opacity: 0;
+            }
+            to{
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+<!--<span id="start"></span>-->
+
+
+<script>
+for(var i=0;i<150;i++){
+    var span=document.createElement('span');
+    var screenW = document.documentElement.clientWidth;
+    var screenH = document.documentElement.clientHeight;
+    document.body.appendChild(span);
+    var randomX=Math.random()*screenX;
+    var randomY=Math.random()*screenY;
+    span.style.left=randomX+'px';
+    span.style.top=randomY+'px';
+    var randomRate = Math.random()*2;
+    span.style.animationDelay = ''+randomRate+'s';
+    var randomScale=Math.random()*1.5;
+    span.style.transform='scale(randomScale)'
+
+}
+
+</script>
+</body>
+
+</html>

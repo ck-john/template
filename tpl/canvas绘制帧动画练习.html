@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="900" height="600" style="border: 1px solid #000;"></canvas>
+<br>
+<button dir="2">上</button>
+<button dir="4">右</button>
+<button dir="6">下</button>
+<button dir="0">左</button>
+
+<script>
+var canvas=document.getElementById("canvas");
+var ctx=canvas.getContext("2d");
+var index=0;
+var time=200;
+var clipImgWH=256;
+var dir=0;
+var img=new Image();
+img.src="images/girl.png";
+img.onload=function () {
+    var self=this;
+    setInterval(function () {
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        ctx.drawImage(self,index*clipImgWH,dir*clipImgWH,clipImgWH,clipImgWH,200,200,clipImgWH,clipImgWH);
+        index++;
+        index%=8;
+    },time);
+    ctx.beginPath();
+    var btns=document.getElementsByTagName("button");
+    for (var i = 0; i < btns.length; i++) {
+        var btn = btns[i];
+        btn.onclick=function () {
+            dir=this.getAttribute("dir")
+        }
+
+    }
+}
+
+
+
+</script>
+</body>
+
+</html>

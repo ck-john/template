@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="900" height="600" style="border: 1px solid #000;"></canvas>
+
+
+<script>
+var canvas=document.getElementById("canvas");
+var ctx=canvas.getContext("2d");
+var maringXY=10;
+var rows=canvas.height/maringXY;
+var cols=canvas.width/maringXY;
+for (var i = 1; i < rows; i++) {
+    ctx.moveTo(0,maringXY*i);
+    ctx.lineTo(canvas.width,maringXY*i)
+};
+for (var i = 1; i < cols; i++) {
+    ctx.moveTo(maringXY*i,0);
+    ctx.lineTo(maringXY*i,canvas.height)
+}
+ctx.strokeStyle="red";
+ctx.stroke()
+
+</script>
+</body>
+
+</html>

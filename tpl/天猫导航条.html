@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+        body{
+            background-color: pink;
+        }
+        div{
+            width: 800px;
+            height: 50px;
+            margin: 100px auto;
+            position: relative;
+        }
+        #oul{
+            width: 100%;
+            height: 100%;
+            background-color: white;
+
+        }
+        #oul li{
+            list-style: none;
+            float: left;
+            width: 100px;
+            line-height: 50px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        #cover{
+            width: 98px;
+            height: 48px;
+            background-color: red;
+            position: absolute;
+            left: 0;
+            top: 0;
+
+        }
+
+    </style>
+</head>
+<body>
+<div>
+    <span id="cover"></span>
+    <ul id="oul">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+    </ul>
+</div>
+
+<!--<script src="MyFunc1.js"></script>-->
+<script>
+var cover = document.getElementById('cover');
+var oul = document.getElementById('oul');
+var lis=oul.children;
+var current=0;
+for(var i=0;i<lis.length;i++){
+    var li=lis[i];
+    li.onmouseover=function(){
+        var leftV=this.offsetLeft;
+        end=leftV;
+    };
+    li.onmnouseout=function(){
+        end=current;
+    };
+    li.onclick=function(){
+        current=this.offsetLeft;
+    }
+}
+var begin=0;
+var end=0;
+var timer=0;
+timer=setInterval(function(){
+    begin=begin+(end-begin)/20;
+    cover.style.left=begin+'px';
+},10)
+
+
+
+
+
+
+
+
+
+//    var oul = document.getElementById('oul');
+//var cover = document.getElementById('cover');
+//var lis=oul.children;
+//var current = 0;
+//for(var i=0;i<lis.length;i++){
+//    var li=lis[i];
+//    li.onmouseover=function(){
+//        var leftV=this.offsetLeft;
+//        end=leftV;
+//    }
+//    li.onmouseout=function(){
+////            current=this.offsetLeft;
+//        end=current;
+//    }
+//    li.onclick=function(){
+//        current=this.offsetLeft;
+//    }
+//
+//}
+//var begin=0;
+//var end=0;
+//var timer = timer;
+//timer=setInterval(function(){
+//    begin=begin+(end-begin)/20;
+//    cover.style.left=begin+'px';
+//},10);
+
+
+
+</script>
+</body>
+
+</html>

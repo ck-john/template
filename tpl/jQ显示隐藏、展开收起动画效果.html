@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .box0{
+            width: 400px;
+            height: 100px;
+            background: green;
+        }
+        body{
+            background: #4b4a5e;
+        }
+
+
+        .box{
+            width: 800px;
+            height: 50px;
+            background: #cccccc;
+            margin: 50px auto;
+
+        }
+
+        .first>li{
+            width: 100px;
+            line-height: 50px;
+            font-size: 14px;
+            float: left;
+            text-align: center;
+        }
+
+        .second{
+            background: #cccccc;
+            display: none;
+        }
+
+        .second>li{
+            text-align: center;
+        }
+
+        li:hover{
+            background: red;
+        }
+
+
+        /*商品展示*/
+        .box1{
+            width: 400px;
+            height: 300px;
+            border: 1px solid #000000;
+            margin: 60px auto;
+        }
+
+        .oul{
+            overflow: hidden;
+        }
+        .oul>li{
+            width: 100px;
+            line-height: 40px;
+            float: left;
+            text-align: center;
+        }
+
+        p{
+            border: 1px solid #000;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box0"></div>
+<button>显示</button>
+<button>隐藏</button>
+<button>显示隐藏切换</button>
+<button>展开</button>
+<button>收起</button>
+<button>展开收起切换</button>
+<button>淡入</button>
+<button>淡出</button>
+<button>fadeTo</button>
+<button>fade切换</button>
+<!--显示隐藏展开收起练习-->
+
+
+<!--下拉菜单练习-->
+<div class="box">
+    <ul class="first">
+        <li>我是一级菜单1
+            <ul class="second">
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+            </ul>
+        </li>
+        <li>我是一级菜单2
+            <ul class="second">
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+            </ul>
+        </li>
+        <li>我是一级菜单3
+            <ul class="second">
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+            </ul>
+        </li>
+        <li>我是一级菜单4
+            <ul class="second">
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+            </ul>
+        </li>
+        <li>我是一级菜单5
+            <ul class="second">
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+            </ul>
+        </li>
+        <li>我是一级菜单6
+            <ul class="second">
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+            </ul>
+        </li>
+        <li>我是一级菜单7
+            <ul class="second">
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+            </ul>
+        </li>
+        <li>我是一级菜单8
+            <ul class="second">
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+                <li>我是二级菜单</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<!--商品展示-->
+<div class="box1">
+    <ul class="oul">
+        <li>佳能</li>
+        <li>索尼</li>
+        <li>三星</li>
+        <li>尼康</li>
+        <li>松下</li>
+        <li>卡西欧</li>
+        <li>富士</li>
+        <li>可达</li>
+        <li>宾得</li>
+        <li>理光</li>
+        <li>奥林巴斯</li>
+        <li>明基</li>
+        <li>显示其它品牌</li>
+    </ul>
+    <p>显示所有的品牌</p>
+</div>
+
+
+<script src="jquery-3.1.1.js"></script>
+<script>
+    //显示隐藏展开收起练习
+$(function(){
+    $('button').eq(0).click(function(){
+        $('.box0').show(2000);
+    });
+    $('button').eq(1).click(function(){
+        $('.box0').hide(2000);
+    });
+    $('button').eq(2).click(function(){
+        $('.box0').toggle(2000);
+    });
+    $('button:eq(3)').click(function(){
+        $('.box0').slideDown(1000);
+    });
+    $('button:eq(4)').click(function(){
+        $('.box0').slideUp(1000);
+    });
+    $('button:eq(5)').click(function(){
+        $('.box0').slideToggle(1000);
+    });
+    $('button:eq(6)').click(function(){
+        $('.box0').fadeIn(1000);
+    });
+    $('button:eq(7)').click(function(){
+        $('.box0').fadeOut(1000);
+    });
+    $('button:eq(8)').click(function(){
+        $('.box0').fadeT(2000,0.2);
+    });
+    $('button:eq(9)').click(function(){
+        $('.box0').fadeToggle(1000);
+    });
+})
+</script>
+<script>
+$(function(){
+    $('.first>li').hover(function(){
+//        $('.second').css('display','block')
+        $(this).children('.second').stop().slideDown(1000).end().siblings().children('.second').stop().slideUp(1000);
+//        $(this).siblings().children('.second').slideUp(1000);
+    })
+    $('.first>li').mouseleave(function(){
+        $(this).children('.second').stop().slideUp(1000)
+    })
+})
+</script>
+
+<script>
+$(function(){
+    $('.oul>li:gt(3):not(:last)').hide();
+    $('p').click(function(){
+        $('.oul>li:gt(3):not(:last)').slideToggle(1000);
+        if($(this).text()=='显示所有的品牌'){
+            $(this).text('隐藏');
+        }else{
+            $(this).text('显示所有的品牌');
+        }
+    })
+})
+</script>
+</body>
+
+</html>

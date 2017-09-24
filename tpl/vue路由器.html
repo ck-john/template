@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bs/css/bootstrap.css">
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="page-header">
+                <h1>广州小喇叭</h1>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-2 col-md-offset-2">
+            <div class="list-group">
+            <router-lank class="list-group-item active"
+            :to="">
+                IOS 学院
+            </router-lank>
+                <router-lank class="list-group-item "
+                             :to="'/html5',
+                             params:{id:'123',content:'带你装逼带你飞!'}}">
+                    html5 学院
+                </router-lank>
+            </div>
+                <div class="col-md-6">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <router-view></router-view>
+                        </div>
+                    </div>
+
+                </div>
+
+
+    </div>
+</div>
+    <template id="ios_id">
+        <div>
+            <h1>iOS学院</h1>
+            <p>这是一个充满大神的学院!!!</p>
+            <p>{{$route.params.content}}</p>
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active">
+                    <router-link to="/ios/study">学院风采</router-link>
+                </li>
+                <li role="presentation">
+                    <router-link to="/ios/classActivity">班级活动</router-link>
+                </li>
+            </ul>
+            <router-view></router-view>
+        </div>
+    </template>
+    <template id="html5_id">
+        <div>
+            <h1> HTML5学院</h1>
+            <p>掌握面向未来的神技!!!</p>
+        </div>
+    </template>
+    <template id="study">
+        <ul>
+            <li>这个学院很热情...</li>
+            <li>这个学院很热情...</li>
+            <li>这个学院很热情...</li>
+            <li>这个学院很热情...</li>
+            <li>这个学院很热情...</li>
+        </ul>
+    </template>
+    <template id="classActivity">
+        <ul>
+            <li>同学们都很认真在敲代码...</li>
+            <li>同学们都很认真在敲代码...</li>
+            <li>同学们都很认真在敲代码...</li>
+            <li>同学们都很认真在敲代码...</li>
+            <li>同学们都很认真在敲代码...</li>
+            <li>同学们都很认真在敲代码...</li>
+        </ul>
+    </template>
+</div>
+<script>
+var IOS=Vue.extend({
+    template:"#ios_id"
+});
+var Html5=Vue.extend({
+    template:"#html5_id"
+})
+var STUDY=Vue.extend({
+    template:"#study"
+})
+var CLASSACTIVITY=Vue.extend({
+    template:"#classActivity"
+});
+const routes=[
+    {path:'/ios',component:"IOS",children:[
+        {path:'study',component:"STUDY"},
+        {path:'classActivity',component:"CLASSACTIVITY"}
+    ]
+    },
+    {path:'/html5',component:"Html5"},
+    { path: '/', redirect: '/html5' }
+
+];
+      const router=new VueRouter({
+          routes
+      });
+  const app=new Vue({
+        el:"#app",
+        router
+    })
+</script>
+</body>
+
+</html>

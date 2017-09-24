@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="900" height="600" style="border: 1px solid #000;"></canvas>
+
+
+<script>
+var canvas=document.getElementById("canvas");
+var ctx=canvas.getContext("2d");
+
+function drawBackground() {
+    ctx.beginPath()
+    ctx.arc(300,300,280,0,360*Math.PI/180);
+    ctx.strokeStyle="pink";
+    ctx.lineWidth=10
+    ctx.stroke();
+    //绘制时针
+    for (var i = 0; i < 12; i++) {
+        ctx.save()
+        ctx.translate(300,300);
+        ctx.rotate(i*30*Math.PI/180);
+        ctx.beginPath();
+        ctx.moveTo(0,-250);//起点，由于通过平移旋转后坐标轴发生变化
+        ctx.lineTo(0,-215);
+        ctx.strokeStyle="black";
+        ctx.lineWidth=10;
+        ctx.stroke()
+        ctx.restore()
+    };
+    for (var i = 0; i < 60; i++) {
+        ctx.save()
+        ctx.translate(300,300);
+        ctx.rotate(i*6*Math.PI/180);
+        ctx.beginPath();
+        ctx.moveTo(0,-250);//起点，由于通过平移旋转后坐标轴发生变化
+        ctx.lineTo(0,-233);
+        ctx.strokeStyle="black";
+        ctx.lineWidth=5;
+        ctx.stroke()
+        ctx.restore()
+    }
+}
+function drawClock() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    drawBackground();
+    var date=new Date();
+    var seconds=date.getSeconds();
+    var mins=date.getMinutes();
+    var hours=date.getHours();
+    hours=hours+mins/60;
+    hours%=12;
+//    mins=mins+seconds/60;
+
+    ctx.save()
+    ctx.translate(300,300);
+    ctx.rotate(hours*30*Math.PI/180);
+    ctx.beginPath();
+    ctx.moveTo(0,-190);
+    ctx.lineTo(0,10);
+    ctx.strokeStyle="black";
+    ctx.lineWidth=15;
+    ctx.stroke();
+    ctx.restore();
+
+    ctx.save();
+    ctx.translate(300,300);
+    ctx.rotate(mins*6*Math.PI/180);
+    ctx.beginPath();
+    ctx.moveTo(0,-205);
+    ctx.lineTo(0,15);
+    ctx.strokeStyle="black";
+    ctx.lineWidth=10;
+    ctx.stroke();
+    ctx.restore();
+
+    ctx.save();
+    ctx.translate(300,300);
+    ctx.rotate(seconds*6*Math.PI/180);
+    ctx.strokeStyle="red";
+    ctx.lineWidth=5;
+    ctx.beginPath();
+    ctx.moveTo(0,-215);
+    ctx.lineTo(0,20);
+    ctx.stroke();
+    ctx.restore()
+
+
+}
+drawClock();
+//drawBackground()
+    setInterval(drawClock,1000)
+</script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+    </style>
+    <!--<script src="PieChart.js"></script>-->
+</head>
+<body>
+
+<div id="containerId"></div>
+<script src='konva.js'></script>
+<script src="PieChart.js"></script>
+<script>
+var stage=new Konva.Stage({
+    width: window.innerWidth,
+    height: window.innerHeight,
+    container: 'containerId'
+})
+    var layer=new Konva.Layer();
+    stage.add(layer);
+
+    var dataArray=[
+        {name:'上海',color:'red',value:0.2},
+        {name:'北京',color:'blue',value:0.25},
+        {name:'广州',color:'green',value:0.15},
+        {name:'杭州',color:'pink',value:0.3},
+        {name:'苏州',color:'purple',value:0.1}
+    ];
+    var circleX=stage.width()*0.5,circleY=stage.height()*0.5;
+var outer_circle_r = 180,inner_circle_r = 150;
+/*this.x=option.x||0;
+ this.y=option.y||0;
+ this.innerR=option.innerR||0;
+ this.outerR=option.outerR||0;
+ this.outerColor=option.outerColor||"black";
+ this.innerFill=option.innerFill;
+ this.dataArray=option.dataArray;
+ this.animationIndex=0
+ */
+var pie=new PieChart({
+    x:circleX,
+    y:circleY,
+    innerR:inner_circle_r,
+    outerR:outer_circle_r,
+    outerColor:"#ccc",
+    outerWidth:5,
+    dataArray:dataArray
+});
+pie.render(layer);
+layer.draw();
+stage.on('contentClick',function () {
+    pie.update();
+})
+</script>
+</body>
+
+</html>

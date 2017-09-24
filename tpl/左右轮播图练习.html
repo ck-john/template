@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+        div{
+            width: 640px;
+            height: 270px;
+            border:1px solid #ccc;
+            margin:100px auto;
+            overflow: hidden;
+            position: relative;
+
+        }
+        li{
+            float: left;
+        }
+        ul{
+            width: 9999px;
+            position: absolute;
+
+        }
+        span{
+            position: absolute;
+            width: 30px;
+            height: 40px;
+            left:0;
+            top:50%;
+            margin-top:-20px;
+            text-align: center;
+            line-height:40px;
+            color: #fff;
+            font-size:20px;
+        }
+        span:nth-of-type(2){
+            right:0;
+            left:auto;
+
+    </style>
+</head>
+<body>
+<div>
+    <ul id="oul">
+        <li><img src="scanImg/01.jpg"></li>
+        <li><img src="scanImg/02.jpg"></li>
+        <li><img src="scanImg/03.jpg"></li>
+        <li><img src="scanImg/04.jpg"></li>
+        <li><img src="scanImg/05.jpg"></li>
+        <li><img src="scanImg/01.jpg"></li>
+    </ul>
+    <span id="left"> < </span>
+    <span id="right"> > </span>
+</div>
+
+
+<script>
+var oul = document.getElementById('oul');
+var left = document.getElementById('left');
+var right = document.getElementById('right');
+var count=0;
+var timer=0;
+var leftV=0;
+var isScroll = false;
+    right.onclick=function(){
+    count++;
+        if(isScroll)return;
+        isScroll = true;
+        clearInterval(timer);
+        timer=setInterval(function(){
+            leftV-=5;
+            if(leftV<-640*count){
+                leftV=-640*count;
+                clearInterval(timer);
+                isScroll = false;
+            }
+            if(count==6){
+                count=1;
+                leftV=0;
+            }
+        },10)
+        oul.style.left=leftV+'px';
+    }
+left.onclick=function(){
+    count--;
+    if(isScroll)return;
+    isScroll = true;
+    clearInterval(timer);
+    timer=setInterval(function(){
+        leftV+=5;
+        if(leftV>=-640*count){
+            leftV=-640*count;
+            clearInterval(timer);
+            isScroll = false;
+        }
+        if(count<0){
+            count=4;
+            leftV=-640*5;
+        }
+    },10)
+    oul.style.left=leftV+'px';
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   /* var oul=document.getElementById('oul');
+    var leftS=document.getElementById('left');
+    var rightS=document.getElementById('right');
+    var count = 0;
+    var leftValue = 0;
+    var timer = 0;
+    var isScroll = false;
+    rightS.onclick=function(){
+        if(isScroll == true){
+            return;
+        }
+        isScroll = true;
+        count++;
+        if(count==6){
+            count=1;
+            leftValue=0;
+        }
+        clearInterval(timer);
+        timer=setInterval(function(){
+            leftValue-=5;
+            if(leftValue<=-640*count){
+                leftValue=-640*count;
+                clearInterval(timer);
+                isScroll = false;
+            }
+            oul.style.left=leftValue+'px';
+        },10)
+    }
+    leftS.onclick=function(){
+        if(isScroll == true){
+            return;
+        }
+        isScroll = true;
+        count--;
+        if(count<0){
+            count=4;
+            leftValue=-640*5;
+        }
+        clearInterval(timer);
+        timer=setInterval(function(){
+            leftValue+=5;
+            if(leftValue>=-640*count){
+                leftValue=-640*count;
+                clearInterval(timer);
+                isScroll = false;
+            }
+            oul.style.left=leftValue+'px';
+        },10)
+    }*/
+
+</script>
+</body>
+
+</html>

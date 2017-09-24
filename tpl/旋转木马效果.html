@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #box {
+            width: 1040px;
+            height: 270px;
+            margin: 100px auto;
+            /*background-color: red;*/
+            position: relative;
+        }
+        #ulTag li{
+            position: absolute;
+            left: 200px;
+            top: 0;
+        }
+        #ulTag li img{
+            width: 100%;
+            height: 100%;
+            vertical-align: top;
+        }
+        #control{
+            position: relative;
+            opacity: 0;
+            z-index: 99;
+
+        }
+        .control_left,.control_right{
+            position: absolute;
+            top: 40px;
+            width: 76px;
+            height: 112px;
+            margin-top: 50px;
+            font-size: 100px;
+        }
+        .control_right{
+            right: 5px;
+        }
+        .control_left{
+            left: 5px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <ul id="ulTag">
+        <li><img src="scanImg/01.jpg" alt=""></li>
+        <li><img src="scanImg/02.jpg" alt=""></li>
+        <li><img src="scanImg/03.jpg" alt=""></li>
+        <li><img src="scanImg/04.jpg" alt=""></li>
+        <li><img src="scanImg/05.jpg" alt=""></li>
+    </ul>
+    <div id="control">
+        <span class="control_left">&lt;</span>
+        <span class="control_right">&gt;</span>
+    </div>
+</div>
+
+<script src="MyFunc1.js"></script>
+<script>
+
+var box = document.getElementById('box');
+var control = document.getElementById('control');
+var control_left = document.getElementById('control_left');
+var control_right = document.getElementById('control_right');
+
+  box.onmouseover=function(){
+      buffer(control,{'opacity':1});
+  }
+    box.onmouseout=function(){
+        buffer(control,{'opacity':0});
+    }
+    var jason=[
+        {
+            width: 320,
+            top: 20,
+            left: 50,
+            opacity: 0.2,
+            z: 2
+        },
+        {
+            width: 500,
+            top: 70,
+            left: 0,
+            opacity: 0.8,
+            z: 3
+        },
+        {
+            width: 640,
+            top: 100,
+            left: 200,
+            opacity: 1,
+            z: 4
+        },
+        {
+            width: 500,
+            top: 70,
+            left:600,
+            opacity: 0.8,
+            z: 3
+        },
+        {
+            width: 320,
+            top: 20,
+            left: 750,
+            opacity: 0.2,
+            z: 2
+        }];
+var ulTag = document.getElementById('ulTag');
+var lis=ulTag.children;
+changePosition();
+//    for(var i=0;i<jason.length;i++){
+//        var jasonIndex=jason[i];
+//        changePosition()
+//    }
+for(var i=0;i<control.children.length;i++){
+    var mySpan=control.children[i];
+    mySpan.onclick=function(){
+        if(this.className=='control_left'){
+            jason.push(jason.shift());
+            changePosition();
+        }
+        else if(this.className=='control_right'){
+            jason.unshift(jason.pop());
+            changePosition();
+        }
+    }
+
+    }
+
+    function changePosition(){
+        for(var i=0;i<jason.length;i++){
+            var jasonIndex=jason[i];
+            buffer(lis[i],{
+                'width':jasonIndex.width,
+                'top':jasonIndex.top,
+                'left':jasonIndex.left,
+                'opacity':jasonIndex.opacity,
+                'zIndex':jasonIndex.z
+            })
+        }
+
+    }
+</script>
+</body>
+
+</html>

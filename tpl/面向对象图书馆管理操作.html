@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+    </style>
+</head>
+<body>
+
+
+
+<script>
+    var bookLists=[
+        {
+            'name':'三国演义',
+            'author':'罗贯中'
+        },
+        {
+            'name':'西游记',
+            'author':'吴承恩'
+        },
+        {
+            'name':'水浒传',
+            'author':'施耐庵'
+        },
+        {
+            'name':'红楼梦',
+            'author':'曹雪芹'
+        }
+    ];
+    function getBookName(bookName){
+        for(var i=0;i<bookLists.length;i++){
+            var obj=bookLists[i];
+            if(obj.name==bookName){
+                return obj;
+            }
+        }
+    }
+    function addBook(bookName){
+        bookLists.push(bookName);
+    }
+    function setBook(bookName,author){
+        for(var i=0;i<bookLists.length;i++){
+            var obj=bookLists[i];
+            if(obj.name==bookName){
+                obj.author='author'
+                return obj;
+            }
+        }
+    }
+    function removeBook(bookName){
+        for(var i=0;i<bookLists.length;i++){
+            var obj=bookLists[i];
+            if(obj.name==bookName){
+                obj.author='author';
+                return obj;
+            }
+        }
+    }
+</script>
+</body>
+
+</html>

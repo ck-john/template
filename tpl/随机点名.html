@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+        button{
+            width: 200px;
+            height: 80px;
+
+        }
+
+    </style>
+</head>
+<body>
+<button id="start">开始</button>
+<button id="stop">停止</button>
+<h1 id="name">点名册</h1>
+
+
+<script>
+var start = document.getElementById('start');
+var stop = document.getElementById('stop');
+var title = document.getElementById('name');
+var timer = 0;
+var names=['张三','李四','王五','ronney','ibarhimovic','ronaldo'];
+start.onclick=function(){
+
+       clearInterval(timer);
+       timer=setInterval(function(){
+           var name =names[parseInt(Math.random()* names.length)];
+           title.innerHTML=name;
+       },10);
+
+   }
+stop.onclick=function(){
+    clearInterval(timer);
+}
+</script>
+</body>
+
+</html>

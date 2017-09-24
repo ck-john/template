@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+        #box{
+            width: 600px;
+            margin: 50px auto;
+        }
+        fieldset{
+            padding-left: 10px;
+            padding-top: 5px;
+        }
+        table{
+            width: 100%;
+            text-align: center;
+        }
+        thead{
+            background-color: red;
+
+        }
+        .buttonCss{
+            background: red;
+            border: none;
+
+        }
+        #box2{
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000;
+
+        }
+        #box3{
+            width: 400px;
+            height: 400px;
+            border: 1px solid #000;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <fieldset>
+        <legend>小喇叭学生录入系统</legend>
+        <div>
+            <span>姓名：</span>
+            <input type="text" placeholder="请输入你的名字" v-model="newStudent.name">
+        </div>
+        <div>
+            <span>年龄：</span>
+            <input type="text" value="0" v-model="newStudent.age" >
+        </div>
+        <div>
+            <span>性别：</span>
+            <select v-model="newStudent.sex">
+                <option value="男">男</option>；
+                <option value="女">女</option>
+            </select>
+        </div>
+        <div>
+            <span>手机：</span>
+            <input type="text" v-model="newStudent.phone">
+        </div>
+        <div><input type="button"value="创建" @click="createStudent"></div>
+    </fieldset>
+    <table>
+        <thead>
+        <tr>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>手机</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="student in students" >
+            <td>{{student.name}}</td>
+            <td>{{student.age}}</td>
+            <td>{{student.sex}}</td>
+            <td>{{student.phone}}</td>
+            <td>
+                <input type="button" value="删除" @click="delStudent(student)" >
+            </td>
+
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div id="box2">
+    <tiantiandabaojian></tiantiandabaojian>
+</div>
+<div id="box3">
+    <tiantiandabaojian></tiantiandabaojian>
+</div>
+
+<script>
+//var vm=new Vue({
+//    el:"#box",
+//    data:{
+//        students:[
+//            {name:"张三",age:20,sex:"女",phone:"3215684654"},
+//            {name:"李四",age:30,sex:"男",phone:"3645985213"},
+//            {name:"王五",age:18,sex:"男",phone:"1234567"},
+//            {name:"赵六",age:24,sex:"女",phone:"654489788"}
+//        ],
+//        newStudent:{name:'',age:0,sex:"男",phone:""}
+//    },
+//    methods:{
+//        createStudent(){
+//            if(this.newStudent.name==''||this.newStudent.phone==''){
+//                alert("请填写完整的信息");
+//                return;
+//            }
+//            this.students.push(this.newStudent);
+//            this.newStudent={name:'',age:0,sex:"男",phone:""}
+//        },
+//        deleStudent(student){
+//            var index=this.students.indexOf(student);
+//            this.students.splice(index,1)
+//        }
+//    }
+//
+//
+//})
+
+    var vm=new Vue({
+        el:"#box",
+        data:{
+            students:[
+                {name:"张三",age:20,sex:"女",phone:"3215684654"},
+                {name:"李四",age:30,sex:"男",phone:"3645985213"},
+                {name:"王五",age:18,sex:"男",phone:"1234567"},
+                {name:"赵六",age:24,sex:"女",phone:"654489788"}
+            ],
+            newStudent:{name:"",age:0,sex:"男",phone:""}
+        },
+        methods:{
+        createStudent(){
+            if(this.newStudent.name==''||this.newStudent.phone==''){
+            return alert('请填写好完整信息')
+            }
+            this.students.push(this.newStudent);
+            this.newStudent={name:"",age:0,sex:"男",phone:""}
+        },
+            delStudent(student){
+                var index=this.students.indexOf(student);
+                this.students.splice(index,1)
+            }
+        }
+    })
+
+//    var profile=Vue.extend({
+//        template:'<h1>666666666</h1>'
+//    });
+//    Vue.component("tiantiandabaojian",profile);
+//    new Vue({
+//        el:"#box2",
+//
+//    });
+//    new Vue({
+//    el:"#box3",
+//
+//    })
+    var profile=Vue.extend({
+        template:"<h1>左耳旁sir下面一个木</h1>"
+    })
+//    Vue.component('tiantiandabaojian',{
+//        template:"<h1>左耳旁sir下面一个木</h1>"
+//    });
+    new Vue({
+        el:'#box2',
+        components:{
+            'tiantiandabaojian':profile
+        }
+    })
+new Vue({
+    el:'#box3'
+})
+
+</script>
+</body>
+
+</html>

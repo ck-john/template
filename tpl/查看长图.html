@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        div {
+            width: 400px;
+            height: 400px;
+            margin: 100px auto;
+            position: relative;
+            overflow: hidden;
+            /*background: green;*/
+        }
+
+        img {
+            width: 400px;
+            position: absolute;
+        }
+
+        span {
+            width: 400px;
+            height: 200px;
+            position: absolute;
+            /*opacity: 0.6;*/
+            /*background: red;*/
+        }
+
+        .top {
+            top: 0;
+            left: 0;
+            /*background: red;*/
+
+        }
+
+        .bottom {
+            bottom: 0;
+            left: 0;
+            /*background: blue;*/
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <img id="pic" src="2.jpg" alt="">
+    <span class="top" id="topCover"></span>
+    <span class="bottom" id="bottomCover"></span>
+</div>
+
+
+<script>
+    var topCover = document.getElementById('topCover');
+    var bottomCover = document.getElementById('bottomCover');
+    var pic = document.getElementById('pic');
+    var timer = 0;
+    var topV = 0;
+    topCover.onmouseover=function(){
+        clearInterval(timer);
+        timer = setInterval(function(){
+                topV -= 2;
+                if(400-pic.height>topV){
+            topV=400-pic.height;
+            clearInterval(timer);
+        }
+            pic.style.top = topV + 'px';
+                },30);
+
+    }
+    bottomCover.onmouseover=function(){
+        clearInterval(timer);
+        timer = setInterval(function(){
+            topV += 2;
+            if(topV>=0){
+                topV=0;
+                clearInterval(timer);
+            }
+            pic.style.top = topV+'px';
+        },30);
+
+    }
+
+</script>
+</body>
+
+</html>

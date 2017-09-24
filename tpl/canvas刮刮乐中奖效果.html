@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+        #canvas{
+            background: url("images/7.jpg");
+        }
+
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="320" height="160" style="border: 1px solid #000;"></canvas>
+
+
+<script>
+var canvas=document.getElementById("canvas");
+var ctx=canvas.getContext("2d");
+ctx.fillStyle="#ccc";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+//ctx.moveTo(200,200);
+ctx.globalCompositeOperation="destination-out";
+canvas.onmousedown=function () {
+//    event=event||window.event;
+
+    canvas.onmousemove=function (e) {
+//        ctx.fillStyle="white";
+        ctx.beginPath();
+        ctx.arc(e.offsetX,e.offsetY,20,0,360*Math.PI/180);
+        ctx.fill();
+    };
+    canvas.onmouseup=function () {
+        canvas.onmousemove=null;
+        canvas.onmousedown=null;
+    }
+}
+
+
+</script>
+</body>
+
+</html>

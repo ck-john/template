@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+    </style>
+</head>
+<body>
+<div id="containerId"></div>
+<script src="konva.js"></script>
+<script src="TextCircle.js"></script>
+<script>
+var stage=new Konva.Stage({
+    width:window.innerWidth,
+    height:window.innerHeight,
+    container:"containerId"
+});
+var bg_layer=new Konva.Layer();
+stage.add(bg_layer);
+var circleX=stage.width()*0.5;
+var circleY=stage.height()*0.5;
+var bg_inner_circle_r=150;
+var bg_outer_circle_r=270;
+var innerCircle=new Konva.Circle({
+    x:circleX,
+    y:circleY,
+    radius:bg_inner_circle_r,
+    stroke:"#ccc",
+    strokeWidth: 5,
+    dash:[7,3]
+});
+bg_layer.add(innerCircle);
+var outerCircle=new Konva.Circle({
+    x:circleX,
+    y:circleY,
+    radius:bg_outer_circle_r,
+    stroke:"#ccc",
+    strokeWidth: 5,
+    dash:[7,3]
+});
+bg_layer.add(outerCircle);
+/*this.x=option.x;
+ this.y=option.y;
+ this.innerRadius=option.innerRadius;
+ this.outerRadius=option.outerRadius;
+ this.fillColor=option.fillColor||black;
+ this.outerColor=optiuon.outerColor;
+ this.text=option.text;
+ this.textColor=option.textColor;*/
+var centerCircle=new TextCircle({
+    x:circleX,
+    y:circleY,
+    innerRadius:70,
+    outerRadius:80,
+    innerFill:"blue",
+    outerColor:"#666",
+    text:"小喇叭教育",
+//    textColor:"#fff"
+})
+centerCircle.render(bg_layer);
+var animation_layer=new Konva.Layer();
+stage.add(animation_layer);
+var inner_Group=new Konva.Group({
+    x:circleX,y:circleY
+});
+animation_layer.add(inner_Group);
+var html5=new TextCircle({
+    x:bg_inner_circle_r*Math.cos(120*Math.PI/180),
+    y:bg_inner_circle_r*Math.sin(120*Math.PI/180),
+    innerRadius:35,
+    outerRadius:40,
+    innerFill:"red",
+    outerColor:"lightgray",
+    text:"html5"
+});
+html5.render(inner_Group);
+var ios=new TextCircle({
+    x:bg_inner_circle_r*Math.cos(240*Math.PI/180),
+    y:bg_inner_circle_r*Math.sin(240*Math.PI/180),
+    innerRadius:35,
+    outerRadius:40,
+    innerFill:"green",
+    outerColor:"lightgray",
+    text:"ios"
+});
+ios.render(inner_Group);
+var java=new TextCircle({
+    x:bg_inner_circle_r*Math.cos(360*Math.PI/180),
+    y:bg_inner_circle_r*Math.sin(360*Math.PI/180),
+    innerRadius:35,
+    outerRadius:40,
+    innerFill:"orange",
+    outerColor:"lightgray",
+    text:"java"
+});
+java.render(inner_Group);
+var outer_Group=new Konva.Group({
+    x:circleX,y:circleY
+});
+animation_layer.add(outer_Group);
+var UI=new TextCircle({
+    x:bg_outer_circle_r*Math.cos(120*Math.PI/180),
+    y:bg_outer_circle_r*Math.sin(120*Math.PI/180),
+    innerRadius : 50,
+    outerRadius : 55,
+    innerFill:"purple",
+    outerColor:"lightgray",
+    text:"UI"
+});
+UI.render(outer_Group);
+var php=new TextCircle({
+    x:bg_outer_circle_r*Math.cos(240*Math.PI/180),
+    y:bg_outer_circle_r*Math.sin(240*Math.PI/180),
+    innerRadius : 50,
+    outerRadius : 55,
+    innerFill:"skyblue",
+    outerColor:"lightgray",
+    text:"php"
+});
+php.render(outer_Group);
+var Android=new TextCircle({
+    x:bg_outer_circle_r*Math.cos(360*Math.PI/180),
+    y:bg_outer_circle_r*Math.sin(360*Math.PI/180),
+    innerRadius : 50,
+    outerRadius : 55,
+    innerFill:"pink",
+    outerColor:"lightgray",
+    text:"Android"
+});
+Android.render(outer_Group);
+
+bg_layer.draw();
+animation_layer.draw();
+var rotateAngel=60;
+var animate=new Konva.Animation(function (frame) {
+    var timerDiff=frame.timeDiff/1000;
+    var angel=rotateAngel*timerDiff;
+    inner_Group.rotate(angel);
+    inner_Group.getChildren().rotate(-angel);
+    outer_Group.rotate(-angel);
+    outer_Group.getChildren().rotate(angel);
+},animation_layer);
+animate.start();
+animation_layer.on("mouseover",function () {
+    rotateAngel=20
+});
+animation_layer.on("mouseout",function () {
+    rotateAngel=60
+})
+</script>
+</body>
+
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0;
+            list-style:none;
+        }
+        /*.box{*/
+            /*width: 500px;*/
+            /*height: 200px;*/
+            /*border: 1px solid #cccccc;*/
+            /*margin: 100px auto;*/
+            /*position: relative;*/
+        /*}*/
+
+        /*.box ul li img{*/
+            /*width: 500px;*/
+            /*height: 200px;*/
+        /*}*/
+
+        /*.box ul{*/
+            /*position: relative;*/
+            /*z-index: 1;*/
+        /*}*/
+        /*.box ul li{*/
+            /*position: absolute;*/
+        /*}*/
+
+        .box ol{
+            position:absolute;
+            z-index: 2;
+            right: 10px;
+            bottom: 10px;
+        }
+
+        .box ol li{
+            background: #cccccc;
+            width: 20px;
+            height: 20px;
+            float: left;
+            margin: 2px;
+            text-align: center;
+        }
+
+        .box .cur{
+            background: #C12C3E;
+            color: #ffffff;
+        }
+
+        /*
+        *--------------------------------------------------------
+        */
+        /*案例二 自动轮播*/
+        .box{
+        width: 500px;
+        height: 200px;
+        border: 1px solid #cccccc;
+        margin: 100px auto;
+        position: relative;
+            overflow: hidden;
+            background: black;
+        }
+        .box ul{
+            width: 9999px;
+            height: 200px;
+            position: absolute;
+        }
+
+        .box ul li{
+            float: left;
+        }
+
+        .box ul li img{
+        width: 500px;
+        height: 200px;
+        }
+        /*--------------------------------------------------------------*/
+        /*案例三：自动轮播+手动切换*/
+        .box p{
+            width: 500px;
+            height: 50px;
+            /*background: red;*/
+            position: absolute;
+            left: 50%;
+            margin-left: -50%;
+            margin-top: 80px;
+            z-index: 2;
+        }
+
+        .box p span{
+            font-size: 50px;
+            line-height: 50px;
+            color: white;
+            z-index: 2;
+        }
+
+        .box p span:nth-child(2)
+        {
+            float: right;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+<div class="box">
+    <ol>
+        <li class="cur">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ol>
+    <p><span>&lt;</span><span>&gt;</span></p>
+    <ul>
+        <li><img src="scanImg/01.jpg"></li>
+        <li><img src="scanImg/02.jpg"></li>
+        <li><img src="scanImg/03.jpg"></li>
+        <li><img src="scanImg/04.jpg"></li>
+    </ul>
+</div>
+
+<script src="jquery-3.1.1.js"></script>
+
+<script>
+$(function() {
+    //案例一：简单切换
+//    $("ul li:first").css(
+//            {
+//                "z-index":1
+//            }
+//    );
+//    var _index=1;
+//    $("ol li").hover(function(){
+//        _index++;
+//        $(this).addClass("cur").siblings().removeClass("cur");
+//        var index1=$(this).index()
+//        $("ul li").eq(index1).css("z-index",_index)
+//    })
+//---------------------------------------------------------------
+    //案例二：自动轮播
+//    $("ul li:first").clone(true).appendTo("ul");
+//    var leftV=0;
+//    var timer=0;
+//    function autoPlay(){
+//        timer=setInterval(function(){
+//            leftV+=3;
+//            if(leftV>=2000){
+//                leftV=0;
+//            }
+//            $("ul").css("left",-leftV)
+//        },20)
+//    }
+//    autoPlay();
+//    $("ul li").hover(function(){
+//        clearInterval(timer);
+//        $(this).fadeTo(50,1).siblings().fadeTo(50,0.3);
+//    },function(){
+//        autoPlay();
+//        $("li").fadeTo(50,1);
+//    })
+    //-------------------------------------------------------
+    //案例三：自动轮播+手动切换
+    $("ul li:first").clone(true).appendTo("ul");
+    var index = 0;
+    var timer;
+    var length = $("li").length;
+
+    function autoPlay() {
+        timer = setInterval(function () {
+            play("next")
+        }, 2000);
+    }
+
+    function play(type) {
+        if (type == "back") {
+            index--;
+            if (index < 0) {
+
+                $("ul").css("left", -((length - 1) * 500 + "px"));
+                index = length - 2;
+            }
+            $("ul").stop().animate({
+                "left": -(index * 500) + "px"
+            })
+            olPlay()
+        } else if (type == "next") {
+            index++;
+            if (index == length) {
+                index = 1;
+                $("ul").css("left", 0);
+            }
+            $("ul").stop().animate({
+                "left": -(index * 500) + "px"
+            })
+            olPlay()
+        }
+
+    }
+
+    autoPlay();
+    $("span:first").click(function () {
+        play("back")
+    });
+    $("span:last").click(function () {
+        play("next")
+    });
+    $(".box").hover(function () {
+        clearInterval(timer)
+    }, function () {
+        autoPlay()
+    })
+
+    function olPlay(){
+        var _index = 1;
+        $("ol li").hover(function () {
+            _index++;
+            $(this).addClass("cur").siblings().removeClass("cur");
+            var index1 = $(this).index()
+            $(this).eq(index1).animate({
+                "left": -(index * 500) + "px"
+            })
+    })
+    }
+
+
+
+//    $("ul li:first").clone(true).appendTo($("ul"));
+//    var timer=0;
+//    var index=0;
+//    var length=$('li').length;
+////    $("ul li:first").clone(true).appendTo($("ul"));//放在这里出bug
+//    function autoPlay(){
+//        setInterval(function(){
+//            index++;
+//            if(index==length){
+//                index=1;
+//                $("ul").css("left",0);
+//            }
+//            $("ul").animate({"left":-(index*500)+"px"});
+//        },2000)
+//    };
+//    autoPlay();
+//    var count=0
+//    $("span:first").click(function(){
+//        count--;
+//        clearInterval(timer)
+//        if(count<0){
+//            count=4;
+//            $("ul").css("left",-4*500+"px");
+//        }
+//        $("ul").stop().animate({"left":-(count*500)+"px"});
+//    })
+//    $("span:last").click(function(){
+//        count++;
+//        clearInterval(timer)
+//        if(count>length-1){
+//            count=1;
+//            $("ul").css("left",0);
+//        }
+//        $("ul").stop().animate({"left":-(count*500)+"px"});
+//    })
+
+
+
+})
+
+
+
+</script>
+</body>
+</html>
